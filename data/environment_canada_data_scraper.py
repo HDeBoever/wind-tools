@@ -244,7 +244,7 @@ def get_request_status(url):
 # Returns a list of dfs called frames
 def get_weather_data(station_id):
 
-	# Set this option to see more columns when printing pandas dfs
+	# Set this option to see all columns when printing pandas dfs
 	pd.set_option('display.expand_frame_repr', False)
 
 	# Obtain station name and the start year for that particuar station id using the get_station_data helper function

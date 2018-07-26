@@ -18,7 +18,7 @@ import pandas as pd
 import sys, os, shutil
 
 
-# Globally declared lists containing station data
+# Globally declared lists containing station location data
 # -----------------------------------------------------------------------------------------------
 # Latitude and Longitude of significant places
 lats = [49.3502777777778, 49.9519444444444, 49.9984722222222, 49.4666666666667,
@@ -61,7 +61,7 @@ def great_circle_distance(start_lat, start_long, end_lat, end_long):
 	end_lat = np.radians(end_lat)
 	end_long = np.radians(end_long)
 
-	# Calculate distance with the haersine formula implementation
+	# Calculate distance with the haversine formula implementation
 	d_lat = end_lat - start_lat
 	d_long = end_long - start_long
 	a = np.sin(d_lat/2)**2 + np.cos(start_lat) * np.cos(end_lat) * np.sin(d_long/2)**2
