@@ -19,6 +19,12 @@ README for the wind tools tool suite
 
   1. - csv_data_scraper.py
 
+    Core Dependencies:
+
+    from datetime import datetime, date
+    import pandas as pd
+    import sys, os, shutil
+
     This tool was written to specifically scrape wind readings from the csv files for the Halibut Bank Buoy and the Sentry Shoal Buoy.
     Read the file in, insert the data pertaining to each climateID into an Ordered Dict
     Reformat it based on new parameters, then insert into a pandas dataframe
@@ -26,7 +32,16 @@ README for the wind tools tool suite
     Specifically programmed to read the data for the Halibut Bank Buoy, Station_ID = C46146
     and the Sentry Shoal Buoy, Station ID = C46131
 
+    The overall functioning of this program is ressentially converting the .csv file to a pandas dataframe and storing it to HDF format.
+
   2. - environment_canada_data_scraper.py
+
+      Core Dependencies:
+
+      Anaconda for Python 3.6.5 (conda 4.5.2)
+      from os import listdir
+      from os.path import isfile, join
+      import pandas as pd, numpy as np, csv, io, requests, os, sys, urllib, shutil
 
     The primary objective of this script is to poll the Environment Canada website for hourly csv data. The script converts the .csv files to equivalent pandas
     dataframes, concatenates them, then stores the final frame in HDF5 format in a folder called weather_station_data.
@@ -62,15 +77,21 @@ README for the wind tools tool suite
 
     The program also includes a simple progress bar to track the number of frames that have been read from the website.
 
-    Core Dependencies:
-
-    Anaconda for Python 3.6.5 (conda 4.5.2)
-    from os import listdir
-    from os.path import isfile, join
-    import pandas as pd, numpy as np, csv, io, requests, os, sys, urllib, shutil
-
     Possible Future Improvements:
 
     I. Make it so that the entry of end dates for each station is dynamically polled from the Environment Canada Website
     II. Trying to sync local computer time with the remote server time
     III. Attempt to gracefully handle slow responses from the Environment Canada website by checking the status of the url requests.
+
+  3. - text_file_data_scraper.py
+
+    Core Dependencies:
+
+    import pandas as pd
+    import numpy as np
+    import sys, os, re, shutil
+    from collections import OrderedDict
+
+    As in the environment_canada_data_scraper.py script, a correspondence had to be made between the climateIDs in the data, and the corresponding station names.
+    Each text file is formatted in a deterministic way with different data types embedded in it. This python scripts goes thorugh the input text files
+    and obtains the relevant data from each for each station. Once that has been completed,the files are converted to HDF format.
